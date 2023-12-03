@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4ieUjK5IFxTjThgQxPgVTbSoCGjIexXa8fUChl+whyW1GB2wcoKZIqDskRg3Xnl9nSv0t9GljRE8IbdyeuDdkQ==",
+  "dgSpecHash": "lSgG1EOCIzMi5Ef1y3Ks0KE3oqACIMBhFIrRLtnMd7yhHTwEJEeGot9Jcno6/yOojsqL6J5l7aFCFt9pPC3PHQ==",
   "success": true,
-  "projectFilePath": "D:\\WORK\\Angular&DOTNET\\API\\CodePulse.API\\CodePulse.API\\CodePulse.API.csproj",
+  "projectFilePath": "D:\\WORK\\Angular_DOTNET\\API\\CodePulse.API\\CodePulse.API\\CodePulse.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sasha\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\sasha\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
