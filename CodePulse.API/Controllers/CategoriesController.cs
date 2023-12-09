@@ -39,7 +39,8 @@ namespace CodePulse.API.Controllers
             return Ok(response);
         }
 
-        //GET :/api/categories
+        //https://localhost:7081/api/Categories
+
         [HttpGet]
         public async Task<IActionResult> GetAllCategories()
         {
