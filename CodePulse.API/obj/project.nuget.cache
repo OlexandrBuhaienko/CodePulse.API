@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lSgG1EOCIzMi5Ef1y3Ks0KE3oqACIMBhFIrRLtnMd7yhHTwEJEeGot9Jcno6/yOojsqL6J5l7aFCFt9pPC3PHQ==",
+  "dgSpecHash": "JvdSicQHe6NpxyVwnb+M82BAP8EIQU1P8noRaXMu+AkGFVhcJ4efemCdggJ5rpUX3kQ6XiGT+z8uVdYifcoDCA==",
   "success": true,
   "projectFilePath": "D:\\WORK\\Angular_DOTNET\\API\\CodePulse.API\\CodePulse.API\\CodePulse.API.csproj",
   "expectedPackageFiles": [
@@ -70,7 +70,11 @@
     "C:\\Users\\sasha\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\sasha\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
     "C:\\Users\\sasha\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\sasha\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
+    "C:\\Users\\sasha\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\sasha\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.15\\microsoft.windowsdesktop.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\sasha\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.15\\microsoft.netcore.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\sasha\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.15\\microsoft.aspnetcore.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\sasha\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.15\\microsoft.netcore.app.host.win-x64.7.0.15.nupkg.sha512"
   ],
   "logs": []
 }
