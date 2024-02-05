@@ -1,8 +1,10 @@
 ﻿using CodePulse.API.Models.Domain;
 using CodePulse.API.Models.DTO;
+using CodePulse.API.Repositories.Implementation;
 using CodePulse.API.Repositories.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace CodePulse.API.Controllers
 {
@@ -49,6 +51,32 @@ namespace CodePulse.API.Controllers
                 ShortDescription = blogPost.ShortDescription,
                 Title = blogPost.Title,
             };
+            return Ok(response);
+        }
+
+        // GET : {apibaseurl}/api/blogposts
+        [HttpGet]
+        public async Task<IActionResult> GetAllBlogPosts()
+        {
+            IEnumerable<BlogPost> blogPosts = await _blogPostRepository.GetAllAsync();
+
+            //Convert the Domain model to DTO 
+            var response = new List<BlogPostDto>();
+            foreach (var blogPost in blogPosts) 
+            {
+                response.Add(new BlogPostDto
+                {
+                    Id = blogPost.Id,
+                    Author = blogPost.Author,
+                    Content = blogPost.Content,
+                    PublishedDate = blogPost.PublishedDate,
+                    FeaturedImageUrl = blogPost.FeaturedImageUrl,
+                    UrlHandle = blogPost.UrlHandle,
+                    IsVisible = blogPost.IsVisible,
+                    ShortDescription = blogPost.ShortDescription,
+                    Title = blogPost.Title,
+                });
+            }
             return Ok(response);
         }
     }
