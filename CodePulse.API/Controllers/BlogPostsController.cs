@@ -15,7 +15,7 @@ namespace CodePulse.API.Controllers
         private readonly IBlogPostRepository _blogPostRepository;
         private readonly ICategoryRepository _categoryRepository;
 
-        public BlogPostsController(IBlogPostRepository blogPostRepository, 
+        public BlogPostsController(IBlogPostRepository blogPostRepository,
             ICategoryRepository categoryRepository)
         {
             this._blogPostRepository = blogPostRepository;
@@ -44,7 +44,7 @@ namespace CodePulse.API.Controllers
             foreach (var categoryGuid in request.Categories)
             {
                 var existingCategory = await _categoryRepository.GetById(categoryGuid);
-                if(existingCategory  != null)
+                if (existingCategory != null)
                 {
                     blogPost.Categories.Add(existingCategory);
                 }
@@ -81,7 +81,7 @@ namespace CodePulse.API.Controllers
 
             //Convert the Domain model to DTO 
             var response = new List<BlogPostDto>();
-            foreach (var blogPost in blogPosts) 
+            foreach (var blogPost in blogPosts)
             {
                 response.Add(new BlogPostDto
                 {
@@ -112,8 +112,8 @@ namespace CodePulse.API.Controllers
         {
             //Get the blogPost from Rpository 
             var blogPost = await _blogPostRepository.GetByIdAsync(id);
-            
-            if(blogPost is null)
+
+            if (blogPost is null)
             {
                 return NotFound();
             }
@@ -141,6 +141,63 @@ namespace CodePulse.API.Controllers
                 };
                 return Ok(response);
             }
+        }
+
+        //PUT : {apiBAseUrl}/api/blogposts/{id}
+        [HttpPut]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> UpdateBlogPostById([FromRoute] Guid id, UpdateBlogPostRequestDto request)
+        {
+            //Convert DTO to Domain model
+            var blogPost = new BlogPost
+            {
+                Id = id,
+                Title = request.Title,
+                ShortDescription = request.ShortDescription,
+                Content = request.Content,
+                FeaturedImageUrl = request.FeaturedImageUrl,
+                UrlHandle = request.UrlHandle,
+                PublishedDate = request.PublishedDate,
+                Author = request.Author,
+                IsVisible = request.IsVisible,
+                Categories = new List<Category>()
+            };
+            //Foreach 
+            foreach(var categoryGuid in request.Categories)
+            {
+                var existingCategory = await _categoryRepository.GetById(categoryGuid);
+                if(existingCategory != null)
+                {
+                    blogPost.Categories.Add(existingCategory);
+                }
+            }
+            //Call Repository to update blogPost domain model
+            var updatedBlogPost = await _blogPostRepository.UpdateAsync(blogPost);
+
+            if(updatedBlogPost == null)
+            {
+                return NotFound();
+            }
+            //Converting the model back to the DTO 
+            var response = new BlogPostDto
+            {
+                Id = blogPost.Id,
+                Author = blogPost.Author,
+                Content = blogPost.Content,
+                PublishedDate = blogPost.PublishedDate,
+                FeaturedImageUrl = blogPost.FeaturedImageUrl,
+                UrlHandle = blogPost.UrlHandle,
+                IsVisible = blogPost.IsVisible,
+                ShortDescription = blogPost.ShortDescription,
+                Title = blogPost.Title,
+                Categories = blogPost.Categories.Select(x => new CategoryDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    UrlHandle = x.UrlHandle
+                }).ToList()
+            };
+            return Ok(response);
         }
     }
 }
