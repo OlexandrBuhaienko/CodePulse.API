@@ -163,10 +163,10 @@ namespace CodePulse.API.Controllers
                 Categories = new List<Category>()
             };
             //Foreach 
-            foreach(var categoryGuid in request.Categories)
+            foreach (var categoryGuid in request.Categories)
             {
                 var existingCategory = await _categoryRepository.GetById(categoryGuid);
-                if(existingCategory != null)
+                if (existingCategory != null)
                 {
                     blogPost.Categories.Add(existingCategory);
                 }
@@ -174,7 +174,7 @@ namespace CodePulse.API.Controllers
             //Call Repository to update blogPost domain model
             var updatedBlogPost = await _blogPostRepository.UpdateAsync(blogPost);
 
-            if(updatedBlogPost == null)
+            if (updatedBlogPost == null)
             {
                 return NotFound();
             }
@@ -196,6 +196,29 @@ namespace CodePulse.API.Controllers
                     Name = x.Name,
                     UrlHandle = x.UrlHandle
                 }).ToList()
+            };
+            return Ok(response);
+        }
+
+        //DELETE: {apibaseurl}/api/blogposts/{id}
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> DeleteBlogPost([FromRoute] Guid id)
+        {
+            var deletedBlogPost = await _blogPostRepository.DeleteAsync(id);
+            if(deletedBlogPost == null) { return NotFound();}
+            //Convert domain model to DTO 
+            var response = new BlogPostDto
+            {
+                Id = deletedBlogPost.Id,
+                Author = deletedBlogPost.Author,
+                Content = deletedBlogPost.Content,
+                PublishedDate = deletedBlogPost.PublishedDate,
+                FeaturedImageUrl = deletedBlogPost.FeaturedImageUrl,
+                UrlHandle = deletedBlogPost.UrlHandle,
+                IsVisible = deletedBlogPost.IsVisible,
+                ShortDescription = deletedBlogPost.ShortDescription,
+                Title = deletedBlogPost.Title,
             };
             return Ok(response);
         }
