@@ -1,6 +1,7 @@
 ﻿using CodePulse.API.Data;
 using CodePulse.API.Models.Domain;
 using CodePulse.API.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
 using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 
@@ -19,6 +20,12 @@ namespace CodePulse.API.Repositories.Implementation
             this.httpContextAccessor = httpContextAccessor;
             _dbContext = dbContext;
         }
+
+        public async Task<IEnumerable<BlogImage>> GetAll()
+        {
+            return await _dbContext.BlogImages.ToListAsync();
+        }
+
         public async Task<BlogImage> Upload(IFormFile file, BlogImage blogImage)
         {
             //1- Upload the Image to API/Images
