@@ -36,7 +36,7 @@ namespace CodePulse.API.Repositories.Implementation
 
             //2- Update the database
 
-            //https://codeppulse.com/images/somefilename.jpg
+            //https://codepulse.com/images/somefilename.jpg
             var httpRequest = httpContextAccessor.HttpContext.Request;
             var urlPath = $"{httpRequest.Scheme}://{httpRequest.Host}{httpRequest.PathBase}/Images/{blogImage.FileName}{blogImage.FileExtension}";
             blogImage.Url = urlPath;
